@@ -1,12 +1,12 @@
 const axios = require('axios');
 const server = require('./src/app.js')
-const { conn, Temperaments } = require('./src/db.js');
+const { conn, Temperament } = require('./src/db.js');
 
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   axios("https://api.thedogapi.com/v1/breeds")
     .then(response => {
-      console.log(`Populating db with breeds`);
+      /*console.log(`Populating db with breeds`);
       const breedData = response.data;
 
       const allTemperaments = new Set();
@@ -21,16 +21,17 @@ conn.sync({ force: true }).then(() => {
           }
         }
       }
+
       const uniqueTemperaments = Array.from(allTemperaments);
-      console.log(uniqueTemperaments);
 
       for (let i = 0; i < uniqueTemperaments.length; i++) { //itero array de temperamentos
-        Temperaments.create({                               //inserto a db
-        name: uniqueTemperaments[i]
-      })
-    }
+        Temperament.create({                               //inserto a db
+          name: uniqueTemperaments[i]
+        })
+      }*/
+
       server.listen(3001, () => {
-        console.log('%s listening at 3001');
+        console.log('Server listening at 3001');
       });
     });
 });
