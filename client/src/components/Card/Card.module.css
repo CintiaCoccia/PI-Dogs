@@ -1,0 +1,50 @@
+.container {
+    border: 1px solid rgb(183, 181, 181);
+    background-color: white;
+    border-radius: 6px;
+    width: 190px;
+    float: left;
+    margin: 0px 8px 8px 0px;
+}
+
+.container:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.textContainer {
+    height: 100px;
+    position: relative;
+    padding: 6px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.container img {
+    width: 190px;
+    height: 130px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid rgb(210, 210, 210);
+}
+
+.container .title {
+    font-weight: bolder;
+    color: black;
+    margin-bottom: 4px;
+}
+
+.container .subtitle {
+    font-weight: bold;
+    color: gray;
+}
+
+.center {
+    width: 80%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-20%, -50%);
+    transform: translate(-50%, -50%);
+}

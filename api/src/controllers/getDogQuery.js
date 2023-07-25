@@ -6,11 +6,15 @@
 const axios = require('axios');
 const { Breed, Temperament } = require("../db.js");
 const { Op } = require("sequelize");
-const { mapAPIBreedToBreed, mapDatabaseBreedToBreed } = require("./../utils/breedUtils")
+const { mapAPIBreedToBreed, mapDatabaseBreedToBreed, applyOrderingFilter } = require("./../utils/breedUtils")
 
 module.exports = async function (request, response) {
 
     const name = request._parsedUrl.query.substring(1) //
+    const source = request.query.source;
+    console.log(name)
+    console.log(source)
+
   try {
     // Busco en la API
     const apiBreeds = (await axios.get("https://api.thedogapi.com/v1/breeds/search?q=" + name)).data
@@ -28,8 +32,17 @@ module.exports = async function (request, response) {
     .map(mapDatabaseBreedToBreed)
 
     if (apiBreeds.length > 0 || dbBreeds.length > 0) {
-      const allBreeds = apiBreeds.concat(dbBreeds);
-      return response.status(200).json(allBreeds);
+      let allDogs;
+      if (source === "api") {
+        allDogs = apiBreeds; // Devuelve las razas de la API
+      } else if (source === "db") {
+        allDogs = dbBreeds; // Devuelve las razas de la base de datos
+      } else {
+        allDogs = dbBreeds.concat(apiBreeds); // Devuelve todas las razas
+      }
+  
+      allDogs = applyOrderingFilter(allDogs, request)
+      return response.status(200).json(allDogs);
     } else {
       return response.status(404).send("No hay coincidencias con la búsqueda :(");
     }

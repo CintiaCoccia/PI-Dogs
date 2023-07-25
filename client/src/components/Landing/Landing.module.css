@@ -1,0 +1,23 @@
+.container img {
+    width: auto;
+    height: auto;
+}
+.container button {
+    margin: 2px 2px 0 0;
+    border: 20px;
+    padding: 6px;
+    border-radius: 6px;
+    width: 140px;
+    height: 60px;
+    background-color: white;
+    color: rgb(68, 65, 65);
+    &:hover {
+        background-color: rgb(224, 221, 221);
+        color: rgb(5, 5, 5);
+    }
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}

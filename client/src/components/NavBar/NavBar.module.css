@@ -1,0 +1,48 @@
+.container {
+    border-bottom: 1px solid rgb(210, 210, 210);
+    background-color: rgb(240, 240, 240);
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+
+.logo {
+    font-size: 40px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+   
+li {
+    display: inline-block;
+    text-align: center;
+    padding: 8px 16px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+li a:hover {
+    background-color: #000000;
+}
+
+input {
+    font-size: 14px;
+    padding-left: 10px;
+    width: 250px;
+}
+
+.searchButton {
+    padding-left: 0px;
+}
+
+.navbarItem {
+    height: 30px;
+    border-radius: 4px;
+    background-color: white;
+    min-width: 40px;
+    border: 1px solid rgb(210, 210, 210);
+}

@@ -26,7 +26,29 @@ function mapDatabaseBreedToBreed(dbBreed) {
   };
 }
 
+function applyOrderingFilter(breeds, request) {
+  const order = request.query.order;
+  const temperament = request.query.temperament;
+    let allDogs = breeds;
+  //filter por temperaments 
+    if (temperament) 
+      allDogs = allDogs.filter((dog) => {
+    if (dog.temperament) { 
+      return dog.temperament.includes(temperament);
+    }  
+  });
+
+    // Order ASC / DESC
+    if (order === "asc") {
+      allDogs.sort((a, b) => a.name.localeCompare(b.name)); // de "A" a "Z"
+    } else if (order === "desc") {
+      allDogs.sort((a, b) => b.name.localeCompare(a.name)); // de "Z" a "A"
+    }
+    return allDogs;
+}
+
 module.exports = {
     mapAPIBreedToBreed: mapAPIBreedToBreed,
-    mapDatabaseBreedToBreed: mapDatabaseBreedToBreed
+    mapDatabaseBreedToBreed: mapDatabaseBreedToBreed,
+    applyOrderingFilter: applyOrderingFilter
 }
