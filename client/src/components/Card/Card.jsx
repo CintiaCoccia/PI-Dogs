@@ -7,7 +7,6 @@ const { name, image, temperament, weight } = props
 
     return (
         <div>
-           HOLa
             <div className={styles.container}>
                 <img className={image} src={image} alt={name} />
                 <div className={styles.textContainer}>

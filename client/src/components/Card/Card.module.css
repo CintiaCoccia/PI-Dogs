@@ -13,7 +13,7 @@
 
 .textContainer {
     height: 100px;
-    position: relative;
+
     padding: 6px;
     padding-bottom: 10px;
     font-size: 12px;
@@ -22,7 +22,7 @@
 
 .container img {
     width: 190px;
-    height: 130px;
+    height: 190px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 1px solid rgb(210, 210, 210);
@@ -39,7 +39,7 @@
     color: gray;
 }
 
-.center {
+/* .center {
     width: 80%;
     margin: 0;
     position: absolute;
@@ -47,4 +47,4 @@
     left: 50%;
     -ms-transform: translate(-20%, -50%);
     transform: translate(-50%, -50%);
-}
+} */

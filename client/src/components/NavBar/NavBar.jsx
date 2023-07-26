@@ -1,8 +1,11 @@
 import styles from "./NavBar.module.css";
+import Home from "../Home/Home";
 
-export default function NavBar() {
 
+export default function NavBar(props) {
 
+    const { temperaments } = props
+    
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -34,10 +37,10 @@ export default function NavBar() {
                     </li>
                     <li>
                         <label>Temperamento: </label>
-                        <select
-                            className={styles.navbarItem} 
-                            name="temperament">
-                            <option value="temperament">Todos</option>
+                        <select className={styles.navbarItem} name="temperament">
+                        {temperaments.map((temp) => {
+                            return <option value={temp.name}>{temp.name}</option>
+                        })}
                         </select>
                     </li>
                     <li>
