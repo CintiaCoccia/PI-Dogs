@@ -39,7 +39,7 @@ export default function NavBar(props) {
                         <label>Temperamento: </label>
                         <select className={styles.navbarItem} name="temperament">
                         {temperaments.map((temp) => {
-                            return <option value={temp.name}>{temp.name}</option>
+                            return <option key={temp.id} value={temp.name}>{temp.name}</option>
                         })}
                         </select>
                     </li>

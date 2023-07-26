@@ -3,20 +3,15 @@ import { useEffect, useState } from 'react';
 import CardContainer from '../CardContainer/CardContainer';
 import NavBar from '../NavBar/NavBar';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBreeds } from '../../redux/action';
 
 export default function Home(props) {
-
-    const [ breeds, setBreeds ] = useState([])
-    const [ temperaments, setTemperaments] = useState([]);
-
-    async function getAllBreeds() {
-        try {
-            const result = await axios("http://localhost:3001/dogs");
-            setBreeds(result.data);
-        } catch(error) {
-            console.log(error)
-        }
-    }
+    
+    const dispatch = useDispatch(); //envía resul de ejecutar la acción al reducer, que combina con el state.
+    
+    const breeds = useSelector((state) => state.breeds) //est global es observado por useSelector.
+    const [ temperaments, setTemperaments] = useState([]); //est local
 
     async function getAllTemperaments() {
         try {
@@ -27,8 +22,8 @@ export default function Home(props) {
         }
     }
 
-    useEffect(() => {
-        getAllBreeds()
+    useEffect(() => { //ejecuta cod cuando estado de algun componente cambia
+        dispatch(getBreeds()); //envio el result de enviar getBreed a la fn de dispatch, es un {type y payload}.
         getAllTemperaments();
     },[]); 
 
