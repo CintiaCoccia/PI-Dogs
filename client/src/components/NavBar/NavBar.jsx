@@ -2,7 +2,7 @@ import styles from "./NavBar.module.css";
 import Home from "../Home/Home";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterTemperaments, getBreeds } from "../../redux/action";
+import { filterSource, filterTemperaments, orderBreeds } from "../../redux/action";
 
 
 export default function NavBar(props) {
@@ -11,18 +11,23 @@ export default function NavBar(props) {
     const { temperaments } = props
     const [ input, setInput ] = useState("");
     const temperament = useSelector((state) => state.navBar.temperament)
+    
+    const order = useSelector((state) => state.navBar.order);
+    const source = useSelector((state) => state.navBar.source);
+
 
     function inputChange(event) {
         setInput(event.target.value)
     }
-
     function handleTemperamentChange(event) {
         dispatch(filterTemperaments(event.target.value))
     }
-
-    // function handleBreedsFieldChange(event) {
-    //     dispatch(orderOrder(event.target.value))
-    // }
+    function handleBreedsChange(event) {
+        dispatch(orderBreeds(event.target.value))
+    }
+    function handleSourceChange(event) {
+        dispatch(filterSource(event.target.value))
+    }
     
     return (
         <div className={styles.container}>
@@ -47,9 +52,11 @@ export default function NavBar(props) {
                     <li>
                         <label>Origen: </label>
                         <select
+                            defaultValue={source}
                             className={styles.navbarItem} 
-                            name="breeds">
-                            <option value="api">Todos</option>
+                            name="breeds"
+                            onChange={handleSourceChange}>
+                            <option value="todos">Todos</option>
                             <option value="api">API</option>
                             <option value="db">Base de datos</option>
                         </select>
@@ -66,10 +73,12 @@ export default function NavBar(props) {
                     <li>
                         <label>Ordenar: </label>
                         <select
+                            defaultValue={order}
+                            onChange={handleBreedsChange}
                             className={styles.navbarItem} 
                             name="breeds">
-                            <option value="alf-asc">Asc (A-Z)</option>
-                            <option value="alf-desc">Desc (Z-A)</option>
+                            <option value="asc">Asc (A-Z)</option>
+                            <option value="desc">Desc (Z-A)</option>
                         </select>
                     </li>
                     <li className={styles.searchButton}>

@@ -1,11 +1,14 @@
-import { FILTER_TEMPERAMENTS, GET_BREEDS, GET_TEMPERAMENTS } from "./action";
+import { FILTER_TEMPERAMENTS, GET_BREEDS, GET_TEMPERAMENTS, ORDER_BREEDS, FILTER_SOURCE } from "./action";
 
 const initialState = {
-    breeds: [],
+    breeds: null,
     temperaments:[],
     navBar: {
-        temperament: "todos"
+        temperament: "todos",
+        order: "asc",
+        source: "todos"
     }
+
 };
 
 const rootReducer = (state = initialState , action) => {
@@ -26,7 +29,24 @@ const rootReducer = (state = initialState , action) => {
             const newState = {
                 ...state
             } 
-            newState.navBar.temperament = action.payload
+            newState.navBar.temperament = action.payload;
+            newState.breeds = null //seteo para caer en Loading
+            return newState;
+        }
+        case ORDER_BREEDS: {
+            const newState = {
+                ...state
+            }
+            newState.navBar.order = action.payload;
+            newState.breeds = null //seteo para caer en Loading
+            return newState;
+        }
+        case FILTER_SOURCE: {
+            const newState = {
+                ...state
+            }
+            newState.navBar.source = action.payload;
+            newState.breeds = null //seteo para caer en Loading
             return newState;
         }
         default: {
