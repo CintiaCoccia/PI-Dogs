@@ -1,7 +1,11 @@
-import { GET_BREEDS } from "./action";
+import { FILTER_TEMPERAMENTS, GET_BREEDS, GET_TEMPERAMENTS } from "./action";
 
 const initialState = {
-    breeds: []
+    breeds: [],
+    temperaments:[],
+    navBar: {
+        temperament: "todos"
+    }
 };
 
 const rootReducer = (state = initialState , action) => {
@@ -12,8 +16,21 @@ const rootReducer = (state = initialState , action) => {
                 breeds: action.payload
             }
         }
+        case GET_TEMPERAMENTS: {
+            return {
+                ...state,
+                temperaments: action.payload
+            }
+        }
+        case FILTER_TEMPERAMENTS: {
+            const newState = {
+                ...state
+            } 
+            newState.navBar.temperament = action.payload
+            return newState;
+        }
         default: {
-            return {...state}
+            return state;
         }
     }
 };

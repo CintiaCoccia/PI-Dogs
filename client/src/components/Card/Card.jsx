@@ -1,12 +1,13 @@
 import styles from "./Card.module.css";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Card(props) {
 
-const { name, image, temperament, weight } = props   
+const { name, image, temperament, weight, id } = props   
 
     return (
         <div>
+            <Link to={"/dogs/" + id}>
             <div className={styles.container}>
                 <img className={image} src={image} alt={name} />
                 <div className={styles.textContainer}>
@@ -17,7 +18,7 @@ const { name, image, temperament, weight } = props
                     </div>
                 </div>
             </div>
-           
+            </Link>
         </div>
     )
 }

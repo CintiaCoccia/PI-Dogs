@@ -5,10 +5,13 @@ export default function CardContainer(props) {
     
     const { breeds } = props
 
+
+
     return(
-        <div>
+        <div className={styles.container}>
             {breeds.map((breed) => {
                 return <Card 
+                id={breed.id}
                 key={breed.id}
                 name={breed.name}
                 image={breed.image}

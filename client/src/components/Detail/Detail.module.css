@@ -1,0 +1,38 @@
+.container {
+    color: rgb(79, 78, 78);
+    background-color: rgb(237, 240, 240);
+    margin: auto;
+    width: 500px;
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 5px;
+    align-items: center;
+}
+.textContainer {
+ text-align: left;
+ border-radius: 5px;
+ background-color: rgb(201, 215, 242);
+ margin: 10px;
+ padding: 4px;
+ height: 20px;
+ contain: content;
+}
+.imgContainer {
+    width: 160px;
+    height: 90px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid rgb(210, 210, 210);
+}
+.container h1 {
+color: rgb(63, 61, 61);
+font-style: italic;
+font-size: 18px;
+font-weight: bold
+}
+.container h2 {
+    color: rgb(63, 61, 61);
+    font-style: oblique;
+    font-size: 14px;
+    font-weight: bold
+}

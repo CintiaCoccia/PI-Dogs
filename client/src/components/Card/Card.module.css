@@ -2,7 +2,7 @@
     border: 1px solid rgb(183, 181, 181);
     background-color: white;
     border-radius: 6px;
-    width: 190px;
+    width: 210px;
     float: left;
     margin: 0px 8px 8px 0px;
 }
@@ -21,8 +21,8 @@
 }
 
 .container img {
-    width: 190px;
-    height: 190px;
+    width: 210px;
+    height: 210px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 1px solid rgb(210, 210, 210);

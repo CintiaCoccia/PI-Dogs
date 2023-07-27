@@ -1,43 +1,92 @@
-// import styles from './NewActivity.module.css';
-// //import validation from './Validation';
+import styles from './NewBreed.module.css';
+import Validation from './Validation';
+import { useNavigate } from 'react-router-dom';
 
 
-// export default function NewActivity() {
+export default function NewBreed() {
 
+    const navigate = useNavigate()
 
-//     return (
-//         <div className={styles.container}>
-//             <form onSubmit={handleSubmit}>
-//                 <label>Nombre: </label>
-//                 <input type="text" name="name" />
-//                 <p className={styles.errors}>{errors.name}</p>
-//                 <br />
-//                 <label>Dificultad: </label>
-//                 <input type="text" name="difficulty" value={activityData.difficulty} onChange={handleinputChange}/>
-//                 <p className={styles.errors}>{errors.difficulty}</p>
-//                 <br />
-//                 <label>Duración: </label>
-//                 <input type="text" name="duration" value={activityData.duration} onChange={handleinputChange}/>
-//                 <p className={styles.errors}>{errors.duration}</p>
-//                 <br />
-//                 <label>Estación: </label>
-//                 <select name="season" onChange={handleinputChange}>
-//                     <option value="Invierno">Invierno</option>
-//                     <option value="Verano">Verano</option>
-//                     <option value="Primavera">Primavera</option>
-//                     <option value="Otoño">Otoño</option>
-//                 </select>
-//                 <p className={styles.errors}>{errors.season}</p>
-//                 <br />
-//                 <label>Países: </label>
-//                 <input type="text" name="countries" value={activityData.countries} onChange={handleinputChange}/>
-//                 <p className={styles.errors}>{errors.countries}</p>
-//                 <br />
-//                 <div className={styles.buttonContainer}>
-//                     <button type="submit" disabled={buttonDisable()} className={styles.button}>Crear</button>
-//                 </div>
+    function goToHome() {
+        navigate("/home")
+    }
+
+    function buttonDisable() {
+        return (errors.name || errors.height || errors.weight || errors.life_span || errors.temperament)
+    }
+
+    const [ newBreedData, setnewBreedData ] = useState({ 
+        name:"",
+        height:"",
+        weight:"",
+        life_span:"",
+        temperament:"",
+     });
+
+    const [errors, setErrors] = useState({
+        name:null,
+        height:null,
+        weight:null,
+        life_span:null,
+        temperament:null,
+    }); 
+
+    const handleinputChange = event => { 
+        const {name, value} = event.target;
+        setnewBreedData({
+            ...newBreedData,
+            [name]:value
+        }) 
+        setErrors(
+            Validation({
+                ...newBreedData, 
+                [name]:value
+        })
+    )
+    };
+    
+    return (
+        <div className={styles.container}>
+
+            <form>
+
+                <h2>Crear nueva raza</h2>
                 
-//             </form>
-//         </div>
-//     )  
-// }
+                <label>Nombre: </label>
+                <input type="text" name="name" onChange={handleinputChange}/>
+                <p className={styles.errors}>{errors.name}</p>
+                <br />
+                
+                <label>Altura: </label>
+                <input type="text" name="height" placeholder='Valor minimo'onChange={handleinputChange}/>
+                <input type="text" name="height" placeholder='Valor máximo'/>
+                <p className={styles.errors}>{errors.name}</p>
+
+                <br />
+
+                <label>Peso: </label>
+                <input type="text" name="weight" placeholder='Valor mínimo'onChange={handleinputChange}/>
+                <input type="text" name="weight" placeholder='Valor máximo'/>
+                <p className={styles.errors}>{errors.name}</p>
+
+                <br />
+
+                <label>Años de vida: </label>
+                <input name="life_span" placeholder='Valor mínimo'onChange={handleinputChange}/>
+                <input name="life_span" placeholder='Valor máximo'/>
+                <p className={styles.errors}>{errors.name}</p>
+                <br />
+
+                <label>Temperamento: </label>
+                <option value="temperament">temperamentos</option>
+                <p className={styles.errors}>{errors.name}</p>
+
+                <br />
+                <div>
+                <button type="submit" disabled={buttonDisable()}>Crear</button>
+                </div>
+
+            </form>
+        </div>
+    )  
+}

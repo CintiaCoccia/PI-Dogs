@@ -1,10 +1,28 @@
 import styles from "./NavBar.module.css";
 import Home from "../Home/Home";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filterTemperaments, getBreeds } from "../../redux/action";
 
 
 export default function NavBar(props) {
 
+    const dispatch = useDispatch();
     const { temperaments } = props
+    const [ input, setInput ] = useState("");
+    const temperament = useSelector((state) => state.navBar.temperament)
+
+    function inputChange(event) {
+        setInput(event.target.value)
+    }
+
+    function handleTemperamentChange(event) {
+        dispatch(filterTemperaments(event.target.value))
+    }
+
+    // function handleBreedsFieldChange(event) {
+    //     dispatch(orderOrder(event.target.value))
+    // }
     
     return (
         <div className={styles.container}>
@@ -20,6 +38,7 @@ export default function NavBar(props) {
                         name="search"
                         id="search"
                         placeholder="Ingresa el nombre de la raza..."
+                        onChange={inputChange}
                         />
                     </li>
                     <li className={styles.searchButton}>
@@ -37,7 +56,8 @@ export default function NavBar(props) {
                     </li>
                     <li>
                         <label>Temperamento: </label>
-                        <select className={styles.navbarItem} name="temperament">
+                        <select className={styles.navbarItem} name="temperament" onChange={handleTemperamentChange} defaultValue={temperament}>
+                        <option key="todos" value="todos">Todos</option>
                         {temperaments.map((temp) => {
                             return <option key={temp.id} value={temp.name}>{temp.name}</option>
                         })}
