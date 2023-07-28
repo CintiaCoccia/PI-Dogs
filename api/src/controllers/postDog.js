@@ -32,7 +32,7 @@ const { Breed, Temperament } = require("../db");
 
 module.exports = async function (request, response) {
   const { name, height, weight, life_span, image, temperaments } = request.body;
-
+console.log(request.body)
   if (!name || !height || !weight || !temperaments || !life_span || !image) {
     return response.status(400).send("Faltan datos para crear la raza");
   }

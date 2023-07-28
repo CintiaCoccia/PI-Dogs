@@ -1,92 +1,119 @@
 import styles from './NewBreed.module.css';
-import Validation from './Validation';
+import validation from './Validation';
 import { useNavigate } from 'react-router-dom';
-
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function NewBreed() {
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     function goToHome() {
-        navigate("/home")
+        navigate("/home");
     }
 
     function buttonDisable() {
-        return (errors.name || errors.height || errors.weight || errors.life_span || errors.temperament)
+        return (errors.name || errors.height || errors.weight || errors.life_span || errors.temperament);
     }
 
-    const [ newBreedData, setnewBreedData ] = useState({ 
-        name:"",
-        height:"",
-        weight:"",
-        life_span:"",
-        temperament:"",
-     });
+    const [newBreedData, setNewBreedData] = useState({
+        name: "",
+        height_min: "",
+        height_max: "",
+        weight_min: "",
+        weight_max: "",
+        life_span_min: "",
+        life_span_max: "",
+        temperament: "",
+
+    });
 
     const [errors, setErrors] = useState({
-        name:null,
-        height:null,
-        weight:null,
-        life_span:null,
-        temperament:null,
-    }); 
+        name: null,
+        height: null,
+        weight: null,
+        life_span: null,
+        temperament: null,
+    });
 
-    const handleinputChange = event => { 
-        const {name, value} = event.target;
-        setnewBreedData({
+    const handleInputChange = event => {
+        const { name, value } = event.target;
+        setNewBreedData({
             ...newBreedData,
-            [name]:value
-        }) 
+            [name]: value
+        });
+        console.log(name)
+        console.log(value)
         setErrors(
-            Validation({
-                ...newBreedData, 
-                [name]:value
-        })
-    )
+            validation({
+                ...newBreedData,
+                [name]: value
+            })
+        );
     };
-    
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            await axios.post("http://localhost:3001/dogs", {
+                name: newBreedData.name,
+                weight: newBreedData.weight_min + " - " + newBreedData.weight_max,
+                height: newBreedData.height_min + " - " + newBreedData.height_max,
+                life_span: newBreedData.life_span_min + " - " + newBreedData.life_span_max,
+                temperaments: [newBreedData.temperament],
+                image: "mm"
+            });
+            goToHome();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className={styles.container}>
-
-            <form>
-
+            <form onSubmit={handleSubmit}>
                 <h2>Crear nueva raza</h2>
-                
+
                 <label>Nombre: </label>
-                <input type="text" name="name" onChange={handleinputChange}/>
+                <br />
+                <input type="text" name="name" onChange={handleInputChange} />
                 <p className={styles.errors}>{errors.name}</p>
                 <br />
-                
+
                 <label>Altura: </label>
-                <input type="text" name="height" placeholder='Valor minimo'onChange={handleinputChange}/>
-                <input type="text" name="height" placeholder='Valor máximo'/>
-                <p className={styles.errors}>{errors.name}</p>
+                <br />
+                <input type="text" name="height_min" placeholder='Valor mínimo en kg' onChange={handleInputChange} />
+                <input type="text" name="height_max" placeholder='Valor máximo en kg' onChange={handleInputChange} />
+                <p className={styles.errors}>{errors.height}</p>
 
                 <br />
 
                 <label>Peso: </label>
-                <input type="text" name="weight" placeholder='Valor mínimo'onChange={handleinputChange}/>
-                <input type="text" name="weight" placeholder='Valor máximo'/>
-                <p className={styles.errors}>{errors.name}</p>
+                <br />
+                <input type="text" name="weight_min" placeholder='Valor mínimo en cm' onChange={handleInputChange} />
+                <input type="text" name="weight_max" placeholder='Valor máximo en cm' onChange={handleInputChange} />
+                <p className={styles.errors}>{errors.weight}</p>
 
                 <br />
 
                 <label>Años de vida: </label>
-                <input name="life_span" placeholder='Valor mínimo'onChange={handleinputChange}/>
-                <input name="life_span" placeholder='Valor máximo'/>
-                <p className={styles.errors}>{errors.name}</p>
+                <br />
+                <input name="life_span_min" placeholder='Valor mínimo' onChange={handleInputChange} />
+                <input name="life_span_max" placeholder='Valor máximo' onChange={handleInputChange} />
+                <p className={styles.errors}>{errors.life_span}</p>
                 <br />
 
                 <label>Temperamento: </label>
-                <option value="temperament">temperamentos</option>
-                <p className={styles.errors}>{errors.name}</p>
+                <br />
+                <input name="temperament" placeholder='aqui va temperament' onChange={handleInputChange} />
+                <p className={styles.errors}>{errors.temperament}</p>
 
                 <br />
                 <div>
-                <button type="submit" disabled={buttonDisable()}>Crear</button>
+                    <button type="submit" disabled={buttonDisable()}>Crear</button>
                 </div>
-
             </form>
         </div>
-    )  
+    )
 }
+
+

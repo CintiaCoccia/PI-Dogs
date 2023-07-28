@@ -31,7 +31,7 @@ export default function NavBar(props) {
     
     return (
         <div className={styles.container}>
-            <div className={styles.content}>
+            <div>
                 <ul>
                     <li className={styles.logo}>
                         <div>🐶</div>
