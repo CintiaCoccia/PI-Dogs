@@ -19,8 +19,14 @@ export const getBreeds = (temperament, order, source)=> {
     }
 }
 
-function buildUrl(temperament, order, source) {
-   const url = new URL("http://localhost:3001/dogs");
+function buildUrl(temperament, order, source, name) {
+   let url;
+   if(name) {
+    url = new URL("http://localhost:3001/dogs/name");
+    url.searchParams.set('', name)
+   } else {
+    url = new URL("http://localhost:3001/dogs");
+   }
    if( temperament!= "todos") {
     url.searchParams.set('temperament', temperament)
    }

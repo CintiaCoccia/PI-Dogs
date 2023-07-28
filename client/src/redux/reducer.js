@@ -16,7 +16,7 @@ const rootReducer = (state = initialState , action) => {
         case GET_BREEDS: {
             return {
                 ...state,
-                breeds: action.payload
+                breeds: action.payload.breeds //cambie de [ ] de breeds a { breeds:[]}
             }
         }
         case GET_TEMPERAMENTS: {

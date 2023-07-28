@@ -6,14 +6,13 @@
 const axios = require('axios');
 const { Breed, Temperament } = require("../db.js");
 const { Op } = require("sequelize");
-const { mapAPIBreedToBreed, mapDatabaseBreedToBreed, applyOrderingFilter } = require("./../utils/breedUtils")
+const { mapAPIBreedToBreed, mapDatabaseBreedToBreed, applyOrderingFilter } = require("./../utils/breedUtils");
+const { applyPaging} = require('../utils/pagingUtils.js');
 
 module.exports = async function (request, response) {
 
     const name = request._parsedUrl.query.substring(1) //
     const source = request.query.source;
-    console.log(name)
-    console.log(source)
 
   try {
     // Busco en la API
@@ -42,6 +41,7 @@ module.exports = async function (request, response) {
       }
   
       allDogs = applyOrderingFilter(allDogs, request)
+      allDogs = applyPaging(allDogs, request)
       return response.status(200).json(allDogs);
     } else {
       return response.status(404).send("No hay coincidencias con la búsqueda :(");

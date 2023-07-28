@@ -3,6 +3,7 @@
 const axios = require('axios');
 const { Breed, Temperament } = require("../db.js");
 const { mapAPIBreedToBreed, mapDatabaseBreedToBreed, applyOrderingFilter } = require("./../utils/breedUtils");
+const { applyPaging} = require('../utils/pagingUtils.js')
 
 module.exports = async function (request, response) {
   
@@ -27,6 +28,7 @@ module.exports = async function (request, response) {
     }
 
     allDogs = applyOrderingFilter(allDogs, request)
+    allDogs = applyPaging(allDogs, request)
 
     response.status(200).json(allDogs); // resp con razas ordenadas
   }catch (error) {
