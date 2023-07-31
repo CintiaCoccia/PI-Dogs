@@ -2,7 +2,7 @@ import styles from "./NavBar.module.css";
 import Home from "../Home/Home";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterSource, filterTemperaments, orderBreeds } from "../../redux/action";
+import { filterSource, filterTemperaments, orderBreeds, searchInput } from "../../redux/action";
 
 export default function NavBar(props) {
     const dispatch = useDispatch();
@@ -15,8 +15,10 @@ export default function NavBar(props) {
     const [input, setInput] = useState("");
 
     function handleInputChange(event) {
-        //dom
         setInput(event.target.value);
+    }
+    function handleSearch() {
+        dispatch(searchInput(input))
     }
 
     function handleTemperamentChange(event) {
@@ -47,7 +49,7 @@ export default function NavBar(props) {
                         />
                     </li>
                     <li className={styles.searchButton}>
-                        <button className={styles.navbarItem}>Buscar 🔍</button>
+                        <button className={styles.navbarItem} onClick={handleSearch}>Buscar 🔍</button>
                     </li>
                     <li>
                         <label>Origen: </label>

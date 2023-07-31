@@ -1,10 +1,10 @@
-import { FILTER_TEMPERAMENTS, GET_BREEDS, GET_TEMPERAMENTS, ORDER_BREEDS, FILTER_SOURCE } from "./action";
+import { FILTER_TEMPERAMENTS, GET_BREEDS, GET_TEMPERAMENTS, ORDER_BREEDS, FILTER_SOURCE, GET_INPUTSEARCH } from "./action";
 
 const initialState = {
     breeds: null,
     temperaments: [],
     navBar: {
-        // input:"",
+        search:"",
         temperament: "todos",
         order: "asc",
         source: "todos",
@@ -49,7 +49,14 @@ const rootReducer = (state = initialState, action) => {
             newState.breeds = null; //seteo para caer en Loading
             return newState;
         }
-
+        case GET_INPUTSEARCH: {
+            const newState = {
+                ...state,
+            };
+            newState.navBar.search = action.payload;
+            newState.breeds = null;
+            return newState;
+        }
         default: {
             return state;
         }

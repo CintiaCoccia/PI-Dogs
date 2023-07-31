@@ -15,12 +15,12 @@ export default function Home(props) {
     const temperament = useSelector((state) => state.navBar.temperament);
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
-    // const input = useSelector((state) => state.navBar.input)
+    const search= useSelector((state) => state.navBar.search)
 
     useEffect(() => {
         //ejecuta cod cuando estado de algun componente cambia
-        dispatch(getBreeds(temperament, order, source)); //envio el result de enviar getBreed a la fn de dispatch, es un {type y payload}.
-    }, [temperament, order, source]); // => el efecto se va a ejecutar cuando el compon cambie y cuando navBar cambie.
+        dispatch(getBreeds(temperament, order, source, search)); //envio el result de enviar getBreed a la fn de dispatch, es un {type y payload}.
+    }, [temperament, order, source, search]); // => el efecto se va a ejecutar cuando el compon cambie y cuando navBar cambie.
 
     useEffect(() => {
         dispatch(getTemperaments());

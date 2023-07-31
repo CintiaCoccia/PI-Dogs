@@ -7,10 +7,10 @@ export const ORDER_BREEDS = "ORDER_BREEDS";
 export const FILTER_SOURCE = "FILTER_SOURCE";
 export const GET_INPUTSEARCH = "GET_INPUTSEARCH";
 
-export const getBreeds = (temperament, order, source) => {
+export const getBreeds = (temperament, order, source, search) => {
     return async (dispatch) => {
         try {
-            const result = await axios(buildUrl(temperament, order, source));
+            const result = await axios(buildUrl(temperament, order, source, search));
             dispatch({ type: GET_BREEDS, payload: result.data });
         } catch (error) {
             dispatch({ type: GET_BREEDS, payload: error.code });
@@ -18,11 +18,11 @@ export const getBreeds = (temperament, order, source) => {
     };
 };
 
-function buildUrl(temperament, order, source, name) {
+function buildUrl(temperament, order, source, search ) {
     let url;
-    if (name) {
+    if (search) {
         url = new URL("http://localhost:3001/dogs/name");
-        url.searchParams.set("", name);
+        url.searchParams.set("", search);
     } else {
         url = new URL("http://localhost:3001/dogs");
     }
