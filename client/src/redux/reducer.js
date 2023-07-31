@@ -61,6 +61,7 @@ const rootReducer = (state = initialState, action) => {
             const newState = {
                 ...state
             }
+            newState.breeds.paging.disabled = true
             newState.breeds.paging.page = Math.max(0, newState.breeds.paging.page-1) //no habrá pag -1.
             return newState;
         }
@@ -68,6 +69,7 @@ const rootReducer = (state = initialState, action) => {
             const newState = {
                 ...state
             }
+            newState.breeds.paging.disabled = true
             newState.breeds.paging.page++;
             return newState;
         }
@@ -81,7 +83,9 @@ function defaultBreeds() {
     return {
         paging: {
             page: 0,
-            moreElements: false
+            moreElements: false,
+            disabled: true,
+            totalPages: 0
         }
     }
 }

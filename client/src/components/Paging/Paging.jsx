@@ -5,6 +5,8 @@ export default function Paging() {
     const dispatch = useDispatch();
     const page = useSelector((state) => state.breeds.paging.page);
     const moreElements = useSelector((state) => state.breeds.paging.moreElements);
+    const disabled = useSelector((state) => state.breeds.paging.disabled);
+    const totalPages = useSelector((state) => state.breeds.paging.totalPages);
 
     function nextPagePressed() {
         dispatch(nextPage());
@@ -16,9 +18,9 @@ export default function Paging() {
 
     return (
         <div>
-            <button onClick={previousPagePressed}>Previous</button>
-            <span>{page+1}</span>
-            {moreElements ? <button onClick={nextPagePressed}>Next</button> : null}
+            {page > 0 ? <button onClick={previousPagePressed} disabled={disabled}>Previous</button> : null}
+            <span>{page+1} of {totalPages}</span>
+            {moreElements ? <button onClick={nextPagePressed} disabled={disabled}>Next</button> : null}
         </div>
     );
 }

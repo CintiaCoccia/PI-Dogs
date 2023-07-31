@@ -4,6 +4,7 @@ function applyPaging(data, request) {
     const paging = {
         page: page,
         moreElements: page * 8 + 8 < data.length,
+        totalPages: Math.ceil(data.length/8)
     };
     return {
         paging: paging,
