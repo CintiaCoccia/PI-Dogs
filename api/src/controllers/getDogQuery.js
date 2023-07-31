@@ -11,8 +11,7 @@ const { applyPaging} = require('../utils/pagingUtils.js');
 
 module.exports = async function (request, response) {
 
-    const name = request._parsedUrl.query.substring(1) //
-    const source = request.query.source;
+    const { name, source } = request.query
 
   try {
     // Busco en la API

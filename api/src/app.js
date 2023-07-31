@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const cors = require("cors");
+const parseNameQuery = require("./utils/parseNameQuery.js")
 
 require('./db.js');
 
@@ -18,6 +19,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use(cors());
+server.use("/dogs/name", parseNameQuery);
 
 server.use('/', routes);
 
