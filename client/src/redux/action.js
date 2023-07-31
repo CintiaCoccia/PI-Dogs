@@ -15,7 +15,8 @@ export const getBreeds = (temperament, order, source, search, page) => {
             const result = await axios(buildUrl(temperament, order, source, search, page));
             dispatch({ type: GET_BREEDS, payload: result.data });
         } catch (error) {
-            dispatch({ type: GET_BREEDS, payload: error.code });
+            console.log(error)
+            dispatch({ type: GET_BREEDS, payload: error.response.data });
         }
     };
 };

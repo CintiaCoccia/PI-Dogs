@@ -10,14 +10,14 @@ import Paging from "../Paging/Paging";
 
 export default function Home(props) {
     const dispatch = useDispatch(); //envía resul de ejecutar la acción al reducer, que combina con el state.
-    const breeds = useSelector((state) => state.breeds.breeds); //est global es observado por useSelector.
+    const breeds = useSelector((state) => state.breeds); //est global es observado por useSelector.
     const temperaments = useSelector((state) => state.temperaments);
 
     const temperament = useSelector((state) => state.navBar.temperament);
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
     const search= useSelector((state) => state.navBar.search);
-    const page=  useSelector((state) => state.breeds.paging.page)
+    const page=  useSelector((state) => (state.breeds.paging) ? state.breeds.paging.page : 0)
 
     useEffect(() => {
         //ejecuta cod cuando estado de algun componente cambia
@@ -29,12 +29,17 @@ export default function Home(props) {
     }, []);
 
     function drawCardContainer() {
-        if (breeds == null) {
+        console.log(breeds)
+        if(breeds.error) {
+            return <Errors message={breeds.error} />
+        } else if (breeds.breeds == null) {
             return <Loading />;
+        } else if(breeds.breeds.length == 0) {
+            return <Errors message={"No hay resultados para la búsqueda"}/>
         } else {
             return (
             <div>
-                <CardContainer breeds={breeds} />
+                <CardContainer breeds={breeds.breeds} />
                 <Paging />
             </div>
             )

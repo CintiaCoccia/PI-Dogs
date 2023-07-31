@@ -29,9 +29,9 @@ module.exports = async function (request, response) {
 
         // Muestro error porque la raza con id no esta ni en la db ni en la api
 
-        return response.status(404).send("La raza " + id + " no fue encontrada.");
+        return response.status(404).json({ error: "La raza " + id + " no fue encontrada."});
     } catch (error) {
-        return response.status(500).json({ error: error.message });
+        return response.status(500).json({ error: "¡Ups, algo salió mal!" });
     }
 };
 

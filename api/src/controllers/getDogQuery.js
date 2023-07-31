@@ -44,9 +44,9 @@ module.exports = async function (request, response) {
             allDogs = applyPaging(allDogs, request);
             return response.status(200).json(allDogs);
         } else {
-            return response.status(404).send("No hay coincidencias con la búsqueda :(");
+            return response.status(404).json({ error: "No hay coincidencias con la búsqueda"});
         }
     } catch (error) {
-        response.status(500).json({ error: error.message });
+        response.status(500).json({ error: "¡Ups, algo salió mal!" });
     }
 };
