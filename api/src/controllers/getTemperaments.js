@@ -3,7 +3,6 @@
 const { Temperament } = require("../db.js");
 
 module.exports = async function (request, response) {
-    
     try {
         const temperaments = await Temperament.findAll();
         response.status(200).json(temperaments);
