@@ -1,0 +1,19 @@
+.errorContainer {
+    text-align: center;
+    padding: 40px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.errorImage {
+    height: 350px;
+}
+
+.errorTitle {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: 400;
+    vertical-align: middle;
+    height: 100%;
+    color: rgb(100, 100, 100);
+}
