@@ -1,5 +1,5 @@
 export default function validation(input) {
-    const { name, height_min, height_max, weight_min, weight_max, life_span_min, life_span_max, temperament, image } =
+    const { name, height_min, height_max, weight_min, weight_max, life_span_min, life_span_max, temperaments, image } =
         input;
     const errors = {};
     const imageRegex = /\.(jpeg|jpg|png|gif)$/i;
@@ -27,8 +27,8 @@ export default function validation(input) {
         errors.life_span = "El valor mínimo no puede ser mayor que el valor máximo";
     }
     // temperament
-    if (!temperament || temperament.length == 0) {
-        errors.temperament = "Este campo es obligatorio";
+    if (!temperaments || temperaments.length == 0) {
+        errors.temperaments = "Este campo es obligatorio";
     }
     // image
     if (!image || !image.match(imageRegex)) {

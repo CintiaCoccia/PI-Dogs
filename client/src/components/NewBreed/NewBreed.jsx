@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments } from "../../redux/action";
+import MultiSelect from "../MultiSelect/MultiSelect"
 
 export default function NewBreed() {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function NewBreed() {
         weight_max: "",
         life_span_min: "",
         life_span_max: "",
-        temperament: [],
+        temperaments: [],
         image: "",
     });
 
@@ -29,7 +30,7 @@ export default function NewBreed() {
         height: null,
         weight: null,
         life_span: null,
-        temperament: null,
+        temperaments: null,
         image: null,
     });
 
@@ -41,16 +42,21 @@ export default function NewBreed() {
         navigate("/home");
     }
 
-    function handleTemperamentChange(event) {
-        const newNewBreedData = {
+    function handleTemperamentChange(newTemperaments) {
+        setNewBreedData({
             ...newBreedData,
-        };
-
-        setNewBreedData();
+            temperaments: newTemperaments
+        })
+        setErrors(
+            validation({
+                ...newBreedData,
+                temperaments: newTemperaments,
+            }),
+        );
     }
 
     function buttonDisable() {
-        return errors.name || errors.height || errors.weight || errors.life_span || errors.temperament || errors.image;
+        return errors.name || errors.height || errors.weight || errors.life_span || errors.temperaments || errors.image;
     }
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -58,8 +64,7 @@ export default function NewBreed() {
             ...newBreedData,
             [name]: value,
         });
-        console.log(name);
-        console.log(value);
+        
         setErrors(
             validation({
                 ...newBreedData,
@@ -76,7 +81,7 @@ export default function NewBreed() {
                 weight: newBreedData.weight_min + " - " + newBreedData.weight_max,
                 height: newBreedData.height_min + " - " + newBreedData.height_max,
                 life_span: newBreedData.life_span_min + " - " + newBreedData.life_span_max,
-                temperaments: [newBreedData.temperament],
+                temperaments: newBreedData.temperaments,
                 image: newBreedData.image,
             });
             goToHome();
@@ -122,18 +127,8 @@ export default function NewBreed() {
                 <label>Temperament: </label>
                 <br />
 
-                <select name="temperament">
-                    <option key="todos" value="todos">
-                        ---
-                    </option>
-                    {temperaments.map((temp) => {
-                        return (
-                            <option key={temp.id} value={temp.name}>
-                                {temp.name}
-                            </option>
-                        );
-                    })}
-                </select>
+                <MultiSelect options={temperaments.map((item) => item.name)} onChange={handleTemperamentChange}/>
+                <p className={styles.errors}>{errors.temperaments}</p>
 
                 <br />
                 <label>Image: </label>
@@ -141,8 +136,8 @@ export default function NewBreed() {
                 <input name="image" placeholder="insertar url" src={newBreedData.image} onChange={handleInputChange} />
                 <p className={styles.errors}>{errors.image}</p>
                 <div>
-                    <button type="submit" disabled={buttonDisable()}>
-                        Crear
+                    <button type="submit" disabled={buttonDisable()} onClick={handleSubmit}>
+                        Create
                     </button>
                 </div>
             </form>

@@ -4,7 +4,11 @@ const { Temperament } = require("../db.js");
 
 module.exports = async function (request, response) {
     try {
-        const temperaments = await Temperament.findAll();
+        const temperaments = await Temperament.findAll({
+            order: [ //traer datos de base de datos ordenados
+                ['name', 'ASC']
+            ]
+        });
         response.status(200).json(temperaments);
     } catch (error) {
         response.status(500).json({ error: error.message });

@@ -1,0 +1,29 @@
+.tag {
+    display: inline-block;
+    margin: 4px;
+    padding: 4px;
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(210, 210, 210);
+    font-size: 0.9em;
+    border-radius: 4px;
+    vertical-align: top;
+    user-select: none;
+}
+
+.optionsList {
+    padding: 3.5px 4px;
+}
+
+.addButton {
+    padding: 4px 8px;
+    font-weight: bolder;
+}
+
+.deleteButton {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}

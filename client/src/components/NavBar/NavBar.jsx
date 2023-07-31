@@ -62,7 +62,7 @@ export default function NavBar(props) {
                         </select>
                     </li>
                     <li>
-                        <label>Temperamento: </label>
+                        <label>Temperament: </label>
                         <select
                             className={styles.navbarItem}
                             name="temperament"
@@ -81,7 +81,7 @@ export default function NavBar(props) {
                         </select>
                     </li>
                     <li>
-                        <label>Ordenar: </label>
+                        <label>Order: </label>
                         <select
                             defaultValue={order}
                             onChange={handleBreedsChange}
