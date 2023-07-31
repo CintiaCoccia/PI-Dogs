@@ -1,5 +1,5 @@
 .container {
-    align-items:center;
+    align-items: center;
     color: rgb(47, 46, 46);
     background-color: rgb(224, 237, 249);
     margin: auto;
@@ -15,7 +15,6 @@
     border-radius: 10px;
     margin: 60px;
     width: 300;
-
 }
 .button {
     border-radius: 5px;
@@ -23,7 +22,7 @@
     background-color: rgb(182, 216, 246);
     color: rgb(75, 75, 212);
     padding: 2px 10px;
-    font-size: 15px; 
+    font-size: 15px;
     border: 3px;
 }
 .buttonContainer {

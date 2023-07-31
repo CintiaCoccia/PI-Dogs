@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const GET_BREEDS = "GET_BREEDS";
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
@@ -7,61 +7,55 @@ export const ORDER_BREEDS = "ORDER_BREEDS";
 export const FILTER_SOURCE = "FILTER_SOURCE";
 export const GET_INPUTSEARCH = "GET_INPUTSEARCH";
 
-
-export const getBreeds = (temperament, order, source)=> {
-    
+export const getBreeds = (temperament, order, source) => {
     return async (dispatch) => {
         try {
             const result = await axios(buildUrl(temperament, order, source));
             dispatch({ type: GET_BREEDS, payload: result.data });
-        } catch(error) {
+        } catch (error) {
             dispatch({ type: GET_BREEDS, payload: error.code });
-            
         }
-    }
-}
+    };
+};
 
 function buildUrl(temperament, order, source, name) {
-   let url;
-   if(name) {
-    url = new URL("http://localhost:3001/dogs/name");
-    url.searchParams.set('', name)
-   } else {
-    url = new URL("http://localhost:3001/dogs");
-   }
-   if( temperament!= "todos") {
-    url.searchParams.set('temperament', temperament)
-   }
-   if(source != "todos") {
-    url.searchParams.set('source', source)
+    let url;
+    if (name) {
+        url = new URL("http://localhost:3001/dogs/name");
+        url.searchParams.set("", name);
+    } else {
+        url = new URL("http://localhost:3001/dogs");
     }
-   url.searchParams.set('order', order)  // => convierto a obj url
+    if (temperament != "todos") {
+        url.searchParams.set("temperament", temperament);
+    }
+    if (source != "todos") {
+        url.searchParams.set("source", source);
+    }
+    url.searchParams.set("order", order); // => convierto a obj url
     return url.toString();
 }
-
 
 export const getTemperaments = () => {
     return async (dispatch) => {
         try {
-            const result = await axios("http://localhost:3001/temperaments")
-            dispatch({ type: GET_TEMPERAMENTS, payload: result.data})
-        } catch(error) {
-            console.log(error)
+            const result = await axios("http://localhost:3001/temperaments");
+            dispatch({ type: GET_TEMPERAMENTS, payload: result.data });
+        } catch (error) {
+            console.log(error);
         }
-    }
-}
+    };
+};
 
 export const filterTemperaments = (value) => {
-    return { type: FILTER_TEMPERAMENTS, payload: value}
-}
+    return { type: FILTER_TEMPERAMENTS, payload: value };
+};
 export const orderBreeds = (value) => {
-    return { type: ORDER_BREEDS, payload: value}
-}
+    return { type: ORDER_BREEDS, payload: value };
+};
 export const filterSource = (value) => {
-    return { type: FILTER_SOURCE, payload: value}
-}
+    return { type: FILTER_SOURCE, payload: value };
+};
 export const searchInput = (value) => {
-    return { type: GET_INPUTSEARCH, payload: value} 
-}
-
-
+    return { type: GET_INPUTSEARCH, payload: value };
+};

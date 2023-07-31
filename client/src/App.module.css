@@ -1,30 +1,30 @@
 .container {
-  position: relative;
-  align-items: center;
-  height: 100vh; /* Esto hará que el contenedor ocupe el 100% del viewport */
+    position: relative;
+    align-items: center;
+    height: 100vh; /* Esto hará que el contenedor ocupe el 100% del viewport */
 }
 
 .container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .container button {
-  margin-top: 0px; /* Agregamos un poco de espacio para separar el botón de la imagen */
-  /* margin-left: 50%;
+    margin-top: 0px; /* Agregamos un poco de espacio para separar el botón de la imagen */
+    /* margin-left: 50%;
   transform: translateX(-50%); */
-  border: 20px;
-  padding: 6px;
-  border-radius: 6px;
-  width: 110px;
-  height: 30px;
-  background-color: white;
-  color: rgb(68, 65, 65);
-  align-items: center;
+    border: 20px;
+    padding: 6px;
+    border-radius: 6px;
+    width: 110px;
+    height: 30px;
+    background-color: white;
+    color: rgb(68, 65, 65);
+    align-items: center;
 }
 
 .container button:hover {
-  background-color: rgb(244, 213, 171);
-  color: rgb(5, 5, 5);
+    background-color: rgb(244, 213, 171);
+    color: rgb(5, 5, 5);
 }

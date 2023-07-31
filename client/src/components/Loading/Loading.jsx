@@ -5,5 +5,5 @@ export default function Loading(props) {
         <div className={styles.container}>
             <span className={styles.loader}></span>
         </div>
-    )
+    );
 }

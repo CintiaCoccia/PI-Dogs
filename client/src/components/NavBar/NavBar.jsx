@@ -2,36 +2,33 @@ import styles from "./NavBar.module.css";
 import Home from "../Home/Home";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterSource, filterTemperaments, orderBreeds} from "../../redux/action";
+import { filterSource, filterTemperaments, orderBreeds } from "../../redux/action";
 
 export default function NavBar(props) {
-
     const dispatch = useDispatch();
-    const { temperaments } = props
-    const temperament = useSelector((state) => state.navBar.temperament)
-    
+    const { temperaments } = props;
+    const temperament = useSelector((state) => state.navBar.temperament);
+
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
-    
 
-    const [ input, setInput ] = useState("")
+    const [input, setInput] = useState("");
 
-
-    function handleInputChange(event) { //dom
-     setInput(event.target.value);
+    function handleInputChange(event) {
+        //dom
+        setInput(event.target.value);
     }
 
     function handleTemperamentChange(event) {
-        dispatch(filterTemperaments(event.target.value))
+        dispatch(filterTemperaments(event.target.value));
     }
     function handleBreedsChange(event) {
-        dispatch(orderBreeds(event.target.value))
+        dispatch(orderBreeds(event.target.value));
     }
     function handleSourceChange(event) {
-        dispatch(filterSource(event.target.value))
+        dispatch(filterSource(event.target.value));
     }
 
-    
     return (
         <div className={styles.container}>
             <div>
@@ -40,13 +37,13 @@ export default function NavBar(props) {
                         <div>🐶</div>
                     </li>
                     <li>
-                        <input 
-                        className={styles.navbarItem}
-                        type="search"
-                        name="search"
-                        id="search"
-                        placeholder="Ingresa el nombre de la raza..."
-                        onChange={handleInputChange}
+                        <input
+                            className={styles.navbarItem}
+                            type="search"
+                            name="search"
+                            id="search"
+                            placeholder="Ingresa el nombre de la raza..."
+                            onChange={handleInputChange}
                         />
                     </li>
                     <li className={styles.searchButton}>
@@ -56,7 +53,7 @@ export default function NavBar(props) {
                         <label>Origen: </label>
                         <select
                             defaultValue={source}
-                            className={styles.navbarItem} 
+                            className={styles.navbarItem}
                             name="breeds"
                             onChange={handleSourceChange}>
                             <option value="todos">Todos</option>
@@ -66,11 +63,21 @@ export default function NavBar(props) {
                     </li>
                     <li>
                         <label>Temperamento: </label>
-                        <select className={styles.navbarItem} name="temperament" onChange={handleTemperamentChange} defaultValue={temperament}>
-                        <option key="todos" value="todos">Todos</option>
-                        {temperaments.map((temp) => {
-                            return <option key={temp.id} value={temp.name}>{temp.name}</option>
-                        })}
+                        <select
+                            className={styles.navbarItem}
+                            name="temperament"
+                            onChange={handleTemperamentChange}
+                            defaultValue={temperament}>
+                            <option key="todos" value="todos">
+                                Todos
+                            </option>
+                            {temperaments.map((temp) => {
+                                return (
+                                    <option key={temp.id} value={temp.name}>
+                                        {temp.name}
+                                    </option>
+                                );
+                            })}
                         </select>
                     </li>
                     <li>
@@ -78,17 +85,17 @@ export default function NavBar(props) {
                         <select
                             defaultValue={order}
                             onChange={handleBreedsChange}
-                            className={styles.navbarItem} 
+                            className={styles.navbarItem}
                             name="breeds">
                             <option value="asc">Asc (A-Z)</option>
                             <option value="desc">Desc (Z-A)</option>
                         </select>
                     </li>
                     <li className={styles.searchButton}>
-                        <button>Agregar  🐾</button>
+                        <button>Agregar 🐾</button>
                     </li>
                 </ul>
             </div>
         </div>
-    )
+    );
 }
