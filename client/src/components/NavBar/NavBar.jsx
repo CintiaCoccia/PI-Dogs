@@ -2,23 +2,25 @@ import styles from "./NavBar.module.css";
 import Home from "../Home/Home";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterSource, filterTemperaments, orderBreeds } from "../../redux/action";
-
+import { filterSource, filterTemperaments, orderBreeds} from "../../redux/action";
 
 export default function NavBar(props) {
 
     const dispatch = useDispatch();
     const { temperaments } = props
-    const [ input, setInput ] = useState("");
     const temperament = useSelector((state) => state.navBar.temperament)
     
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
+    
+
+    const [ input, setInput ] = useState("")
 
 
-    function inputChange(event) {
-        setInput(event.target.value)
+    function handleInputChange(event) { //dom
+     setInput(event.target.value);
     }
+
     function handleTemperamentChange(event) {
         dispatch(filterTemperaments(event.target.value))
     }
@@ -28,6 +30,7 @@ export default function NavBar(props) {
     function handleSourceChange(event) {
         dispatch(filterSource(event.target.value))
     }
+
     
     return (
         <div className={styles.container}>
@@ -43,7 +46,7 @@ export default function NavBar(props) {
                         name="search"
                         id="search"
                         placeholder="Ingresa el nombre de la raza..."
-                        onChange={inputChange}
+                        onChange={handleInputChange}
                         />
                     </li>
                     <li className={styles.searchButton}>

@@ -5,6 +5,7 @@ export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const FILTER_TEMPERAMENTS = "FILTER_TEMPERAMENTS";
 export const ORDER_BREEDS = "ORDER_BREEDS";
 export const FILTER_SOURCE = "FILTER_SOURCE";
+export const GET_INPUTSEARCH = "GET_INPUTSEARCH";
 
 
 export const getBreeds = (temperament, order, source)=> {
@@ -14,7 +15,8 @@ export const getBreeds = (temperament, order, source)=> {
             const result = await axios(buildUrl(temperament, order, source));
             dispatch({ type: GET_BREEDS, payload: result.data });
         } catch(error) {
-            console.log(error)
+            dispatch({ type: GET_BREEDS, payload: error.code });
+            
         }
     }
 }
@@ -57,6 +59,9 @@ export const orderBreeds = (value) => {
 }
 export const filterSource = (value) => {
     return { type: FILTER_SOURCE, payload: value}
+}
+export const searchInput = (value) => {
+    return { type: GET_INPUTSEARCH, payload: value} 
 }
 
 

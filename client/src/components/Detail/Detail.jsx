@@ -17,7 +17,7 @@ export default function Detail(props) {
             const { data } = await axios("http://localhost:3001/dogs/" + id)
             setBreedById(data);
         } catch(error) {
-
+            console.log(error)
         }
     }
     useEffect(() => { 

@@ -5,6 +5,7 @@ import NavBar from '../NavBar/NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBreeds, getTemperaments, orderBreeds } from '../../redux/action';
 import Loading from '../Loading/Loading';
+import Errors from '../Errors/Errors';
 
 
 export default function Home(props) {
@@ -16,6 +17,7 @@ export default function Home(props) {
     const temperament = useSelector((state) => state.navBar.temperament);
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
+    // const input = useSelector((state) => state.navBar.input)
 
     useEffect(() => { //ejecuta cod cuando estado de algun componente cambia
         dispatch(getBreeds(temperament, order, source)); //envio el result de enviar getBreed a la fn de dispatch, es un {type y payload}.
@@ -31,6 +33,7 @@ export default function Home(props) {
         } else {
             return <CardContainer breeds={breeds}/>
         }
+        
     }
     
     return(

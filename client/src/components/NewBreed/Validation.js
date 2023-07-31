@@ -1,7 +1,8 @@
 export default function validation(input) {
     
-    const {name, height_min, height_max, weight_min, weight_max, life_span_min, life_span_max, temperament } = input
+    const {name, height_min, height_max, weight_min, weight_max, life_span_min, life_span_max, temperament, image } = input
     const errors = {};
+    const imageRegex = /\.(jpeg|jpg|png|gif)$/i;
  
     // name
     if(!name || name.length == 0) {
@@ -30,6 +31,9 @@ export default function validation(input) {
         errors.temperament = "Este campo es obligatorio";
     }
     // image
+    if (!image || !image.match(imageRegex)) {
+    errors.image = "La URL de la imagen no es válida o no es una imagen (jpeg, jpg, png, gif)";
+  }
   
     return errors;
 }

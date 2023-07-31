@@ -4,6 +4,7 @@ const initialState = {
     breeds: null,
     temperaments:[],
     navBar: {
+        // input:"",
         temperament: "todos",
         order: "asc",
         source: "todos"
@@ -49,6 +50,7 @@ const rootReducer = (state = initialState , action) => {
             newState.breeds = null //seteo para caer en Loading
             return newState;
         }
+        
         default: {
             return state;
         }
