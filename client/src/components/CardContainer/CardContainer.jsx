@@ -18,6 +18,7 @@ export default function CardContainer(props) {
                     />
                 );
             })}
+            <div className={styles.footer}></div>
         </div>
     );
 }

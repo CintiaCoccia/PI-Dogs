@@ -1,3 +1,6 @@
 .container {
-    margin-top: 110px;
+    margin-top: 100px;
+}
+.footer {
+    clear: both;
 }

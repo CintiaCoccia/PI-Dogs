@@ -1,6 +1,8 @@
 .container img {
-    width: auto;
-    height: auto;
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
 }
 .container button {
     margin: 2px 2px 0 0;

@@ -11,6 +11,7 @@ export default function NavBar(props) {
 
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
+    const search= useSelector((state) => state.navBar.search);
 
     const [input, setInput] = useState("");
 
@@ -44,12 +45,13 @@ export default function NavBar(props) {
                             type="search"
                             name="search"
                             id="search"
+                            defaultValue={search}
                             placeholder="Ingresa el nombre de la raza..."
                             onChange={handleInputChange}
                         />
                     </li>
                     <li className={styles.searchButton}>
-                        <button className={styles.navbarItem} onClick={handleSearch}>Buscar 🔍</button>
+                        <button onClick={handleSearch}>Search</button>
                     </li>
                     <li>
                         <label>Origen: </label>

@@ -29,7 +29,7 @@ export default function Home(props) {
     }, []);
 
     function drawCardContainer() {
-        console.log(breeds)
+    
         if(breeds.error) {
             return <Errors message={breeds.error} />
         } else if (breeds.breeds == null) {

@@ -2,7 +2,7 @@
     border: 1px solid rgb(183, 181, 181);
     background-color: white;
     border-radius: 6px;
-    width: 210px;
+    width: 300px;
     float: left;
     margin: 0px 8px 8px 0px;
 }
@@ -12,26 +12,25 @@
 }
 
 .textContainer {
-    height: 100px;
-
+    height: 150px;
     padding: 6px;
     padding-bottom: 10px;
-    font-size: 12px;
+    font-size: 1em;
     text-align: center;
 }
 
 .container img {
-    width: 210px;
-    height: 210px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    width: 300px;
+    height: 300px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     border-bottom: 1px solid rgb(210, 210, 210);
 }
 
 .container .title {
     font-weight: bolder;
     color: black;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .container .subtitle {
@@ -39,12 +38,3 @@
     color: gray;
 }
 
-/* .center {
-    width: 80%;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-20%, -50%);
-    transform: translate(-50%, -50%);
-} */
