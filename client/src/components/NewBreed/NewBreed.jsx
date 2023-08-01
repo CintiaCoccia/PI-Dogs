@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments } from "../../redux/action";
-import MultiSelect from "../MultiSelect/MultiSelect"
+import MultiSelect from "../MultiSelect/MultiSelect";
+import backg from "../../assets/backg.jpeg";
 
 export default function NewBreed() {
     const navigate = useNavigate();
@@ -91,9 +92,12 @@ export default function NewBreed() {
     };
 
     return (
+        <div className={styles.background} style={{
+            background: `url(${backg})` , 
+          }}>
         <div className={styles.container}>
             <form onSubmit={handleSubmit}>
-                <h2>Crear nueva raza</h2>
+                <h2>Create new breed</h2>
 
                 <label>Name: </label>
                 <br />
@@ -103,16 +107,16 @@ export default function NewBreed() {
 
                 <label>Height: </label>
                 <br />
-                <input type="text" name="height_min" placeholder="Valor mínimo en kg" onChange={handleInputChange} />
-                <input type="text" name="height_max" placeholder="Valor máximo en kg" onChange={handleInputChange} />
+                <input type="text" name="height_min" placeholder="Valor mínimo en cm" onChange={handleInputChange} />
+                <input type="text" name="height_max" placeholder="Valor máximo en cm" onChange={handleInputChange} />
                 <p className={styles.errors}>{errors.height}</p>
 
                 <br />
 
                 <label>Weight: </label>
                 <br />
-                <input type="text" name="weight_min" placeholder="Valor mínimo en cm" onChange={handleInputChange} />
-                <input type="text" name="weight_max" placeholder="Valor máximo en cm" onChange={handleInputChange} />
+                <input type="text" name="weight_min" placeholder="Valor mínimo en kg" onChange={handleInputChange} />
+                <input type="text" name="weight_max" placeholder="Valor máximo en kg" onChange={handleInputChange} />
                 <p className={styles.errors}>{errors.weight}</p>
 
                 <br />
@@ -136,11 +140,12 @@ export default function NewBreed() {
                 <input name="image" placeholder="insertar url" src={newBreedData.image} onChange={handleInputChange} />
                 <p className={styles.errors}>{errors.image}</p>
                 <div>
-                    <button type="submit" disabled={buttonDisable()} onClick={handleSubmit}>
+                    <button className={styles.createButton} type="submit" disabled={buttonDisable()} onClick={handleSubmit}>
                         Create
                     </button>
                 </div>
             </form>
+        </div>
         </div>
     );
 }

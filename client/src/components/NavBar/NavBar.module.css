@@ -26,10 +26,6 @@ li {
     vertical-align: middle;
 }
 
-li a:hover {
-    background-color: #000000;
-}
-
 input {
     font-size: 13px;
     padding-left: 10px;
@@ -46,5 +42,10 @@ input {
     background-color: white;
     min-width: 40px;
     border: 1px solid rgb(210, 210, 210);
+}
+.addButton {
+    background-color: rgb(168, 235, 168) !important;
+    padding: 15px !important;
+    margin-left: 70px !important;
 }
 

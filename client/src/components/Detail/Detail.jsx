@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Errors from "../Errors/Errors";
 import Loading from "../Loading/Loading";
+import backg from "../../assets/backg.jpeg";
 
 export default function Detail(props) {
     const { id } = useParams(); //devuelve obj cuyas keys son param que usé en las rutas
@@ -31,16 +32,19 @@ export default function Detail(props) {
             return <Errors message={breedById.error}/>
         } else  {
             return (
-                <div className={styles.container}>
-                    
-                    <img src={breedById.image} />
-                    <h1>Nombre: {breedById.name}</h1>
+                <div className={styles.background} style={{
+                    background: `url(${backg})`, 
+                  }}>
+                    <div className={styles.container}>
+                    <img src={breedById.image} className={styles.imgContainer}/>
+                    <h1>Name: {breedById.name}</h1>
                     <h2>Id: {breedById.id}</h2>
-                    <h2>Altura: {breedById.height}</h2>
-                    <h2>Peso: {breedById.weight}</h2>
-                    <h2>Temperamento: {breedById.temperament}</h2>
-                    <h2>Años de vida: {breedById.life_span}</h2>
+                    <h2>Height: {breedById.height}</h2>
+                    <h2>Weight: {breedById.weight}</h2>
+                    <h2>Temperament: {breedById.temperament}</h2>
+                    <h2>Life span: {breedById.life_span}</h2>
                     
+                </div>
                 </div>
             )
         }

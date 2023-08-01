@@ -3,6 +3,7 @@ import Home from "../Home/Home";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterSource, filterTemperaments, orderBreeds, searchInput } from "../../redux/action";
+import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
     const dispatch = useDispatch();
@@ -96,7 +97,9 @@ export default function NavBar(props) {
                         </select>
                     </li>
                     <li className={styles.searchButton}>
-                        <button>Agregar 🐾</button>
+                         <Link to="/dogs/new">
+                         <button className={styles.addButton}>Add new breed </button>
+                         </Link>
                     </li>
                 </ul>
             </div>
