@@ -8,6 +8,9 @@ export const FILTER_SOURCE = "FILTER_SOURCE";
 export const GET_INPUTSEARCH = "GET_INPUTSEARCH";
 export const PREVIOUS_PAGE = "PREVIOUS_PAGE";
 export const NEXT_PAGE = "NEXT_PAGE";
+export const CREATE_BREED = "CREATE_BREED";
+export const CLEAR_BREEDCREATED = "CLEAR_BREEDCREATED";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const getBreeds = (temperament, order, source, search, page) => {
     return async (dispatch) => {
@@ -50,6 +53,17 @@ export const getTemperaments = () => {
     };
 };
 
+export const createBreed= (breed) => {
+    return async (dispatch) => {
+        try {
+           const result = await axios.post("http://localhost:3001/dogs", breed);
+            dispatch({ type: CREATE_BREED, payload: breed.name });
+        } catch(error) {
+            console.log(error)
+        }
+    }
+}
+
 export const filterTemperaments = (value) => {
     return { type: FILTER_TEMPERAMENTS, payload: value };
 };
@@ -68,3 +82,10 @@ export const nextPage = () => {
 export const previousPage = () => {
     return { type: PREVIOUS_PAGE };
 };
+export const clearBreedCreated = () => {
+    return { type: CLEAR_BREEDCREATED }
+}
+export const clearMessage = () => {
+    return { type: CLEAR_MESSAGE }
+}
+

@@ -61,9 +61,9 @@ export default function NavBar(props) {
                             className={styles.navbarItem}
                             name="breeds"
                             onChange={handleSourceChange}>
-                            <option value="todos">Todos</option>
+                            <option value="todos">All</option>
                             <option value="api">API</option>
-                            <option value="db">Base de datos</option>
+                            <option value="db">Database</option>
                         </select>
                     </li>
                     <li>
@@ -74,7 +74,7 @@ export default function NavBar(props) {
                             onChange={handleTemperamentChange}
                             defaultValue={temperament}>
                             <option key="todos" value="todos">
-                                Todos
+                                All
                             </option>
                             {temperaments.map((temp) => {
                                 return (

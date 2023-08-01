@@ -18,11 +18,12 @@ export default function Home(props) {
     const source = useSelector((state) => state.navBar.source);
     const search = useSelector((state) => state.navBar.search);
     const page = useSelector((state) => (state.breeds.paging ? state.breeds.paging.page : 0));
+    const breedCreated = useSelector((state) => state.breedCreated);
 
     useEffect(() => {
         //ejecuta cod cuando estado de algun componente cambia
         dispatch(getBreeds(temperament, order, source, search, page)); //envio el result de enviar getBreed a la fn de dispatch, es un {type y payload}.
-    }, [temperament, order, source, search, page]); // => el efecto se va a ejecutar cuando el compon cambie y cuando navBar cambie.
+    }, [temperament, order, source, search, page, breedCreated]); // => el efecto se va a ejecutar cuando el compon cambie y cuando navBar cambie.
 
     useEffect(() => {
         dispatch(getTemperaments());

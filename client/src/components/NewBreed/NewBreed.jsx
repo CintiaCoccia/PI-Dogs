@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getTemperaments } from "../../redux/action";
+import { createBreed, getTemperaments, clearBreedCreated } from "../../redux/action";
 import MultiSelect from "../MultiSelect/MultiSelect";
 import backg from "../../assets/backg.jpeg";
 
@@ -13,7 +13,8 @@ export default function NewBreed() {
     const dispatch = useDispatch();
 
     const temperaments = useSelector((state) => state.temperaments);
-
+    const breedCreated = useSelector((state) => state.breedCreated);
+    
     const [newBreedData, setNewBreedData] = useState({
         name: "",
         height_min: "",
@@ -38,6 +39,13 @@ export default function NewBreed() {
     useEffect(() => {
         dispatch(getTemperaments());
     }, []);
+
+    useEffect(() => {
+        if(breedCreated) {
+            goToHome()
+            dispatch(clearBreedCreated())
+        }
+    },[breedCreated]);
 
     function goToHome() {
         navigate("/home");
@@ -76,19 +84,14 @@ export default function NewBreed() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            await axios.post("http://localhost:3001/dogs", {
-                name: newBreedData.name,
-                weight: newBreedData.weight_min + " - " + newBreedData.weight_max,
-                height: newBreedData.height_min + " - " + newBreedData.height_max,
-                life_span: newBreedData.life_span_min + " - " + newBreedData.life_span_max,
-                temperaments: newBreedData.temperaments,
-                image: newBreedData.image,
-            });
-            goToHome();
-        } catch (error) {
-            console.log(error);
-        }
+        dispatch(createBreed({
+            name: newBreedData.name,
+            weight: newBreedData.weight_min + " - " + newBreedData.weight_max,
+            height: newBreedData.height_min + " - " + newBreedData.height_max,
+            life_span: newBreedData.life_span_min + " - " + newBreedData.life_span_max,
+            temperaments: newBreedData.temperaments,
+            image: newBreedData.image,
+        }))
     };
 
     return (
@@ -99,7 +102,7 @@ export default function NewBreed() {
             }}>
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
-                    <h2>Create new breed</h2>
+                    <h2> -- Create new breed -- </h2>
 
                     <label>Name: </label>
                     <br />
@@ -112,13 +115,13 @@ export default function NewBreed() {
                     <input
                         type="text"
                         name="height_min"
-                        placeholder="Valor mínimo en cm"
+                        placeholder="Minimum value in cm"
                         onChange={handleInputChange}
                     />
                     <input
                         type="text"
                         name="height_max"
-                        placeholder="Valor máximo en cm"
+                        placeholder="Maximum value in cm"
                         onChange={handleInputChange}
                     />
                     <p className={styles.errors}>{errors.height}</p>
@@ -130,13 +133,13 @@ export default function NewBreed() {
                     <input
                         type="text"
                         name="weight_min"
-                        placeholder="Valor mínimo en kg"
+                        placeholder="Minimum value in kg"
                         onChange={handleInputChange}
                     />
                     <input
                         type="text"
                         name="weight_max"
-                        placeholder="Valor máximo en kg"
+                        placeholder="Maximum value in kg"
                         onChange={handleInputChange}
                     />
                     <p className={styles.errors}>{errors.weight}</p>
@@ -145,8 +148,8 @@ export default function NewBreed() {
 
                     <label>Life span: </label>
                     <br />
-                    <input name="life_span_min" placeholder="Valor mínimo" onChange={handleInputChange} />
-                    <input name="life_span_max" placeholder="Valor máximo" onChange={handleInputChange} />
+                    <input name="life_span_min" placeholder="Minium value" onChange={handleInputChange} />
+                    <input name="life_span_max" placeholder="Maxium value" onChange={handleInputChange} />
                     <p className={styles.errors}>{errors.life_span}</p>
                     <br />
 
@@ -161,7 +164,7 @@ export default function NewBreed() {
                     <br />
                     <input
                         name="image"
-                        placeholder="insertar url"
+                        placeholder="Insert url here"
                         src={newBreedData.image}
                         onChange={handleInputChange}
                     />

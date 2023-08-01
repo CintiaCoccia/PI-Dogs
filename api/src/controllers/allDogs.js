@@ -1,5 +1,3 @@
-// Obtiene un arreglo de objetos, donde cada objeto es la raza de un perro.
-
 const axios = require("axios");
 const { Breed, Temperament } = require("../db.js");
 const { mapAPIBreedToBreed, mapDatabaseBreedToBreed, applyOrderingFilter } = require("./../utils/breedUtils");

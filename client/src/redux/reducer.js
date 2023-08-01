@@ -7,6 +7,9 @@ import {
     GET_INPUTSEARCH,
     PREVIOUS_PAGE,
     NEXT_PAGE,
+    CREATE_BREED,
+    CLEAR_BREEDCREATED,
+    CLEAR_MESSAGE,
 } from "./action";
 
 const initialState = {
@@ -81,6 +84,26 @@ const rootReducer = (state = initialState, action) => {
             newState.breeds.paging.disabled = true;
             newState.breeds.paging.page++;
             return newState;
+        }
+        case CREATE_BREED: {
+            const newState = {
+                ...state
+            }
+           newState.alertMessage = action.payload + ' created succesfully'
+           newState.breedCreated = true;
+            return newState;
+        }
+        case CLEAR_BREEDCREATED: {
+            return {
+                ...state,
+                breedCreated: false
+            }
+        }
+        case CLEAR_MESSAGE: {
+            return {
+                ...state,
+                alertMessage: null
+            }
         }
         default: {
             return state;
