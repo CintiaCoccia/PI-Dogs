@@ -20,7 +20,7 @@ export const getBreeds = (temperament, order, source, search, page) => {
     };
 };
 
-function buildUrl(temperament, order, source, search, page ) {
+function buildUrl(temperament, order, source, search, page) {
     let url;
     if (search) {
         url = new URL("http://localhost:3001/dogs/name");
@@ -63,8 +63,8 @@ export const searchInput = (value) => {
     return { type: GET_INPUTSEARCH, payload: value };
 };
 export const nextPage = () => {
-    return { type: NEXT_PAGE};
+    return { type: NEXT_PAGE };
 };
 export const previousPage = () => {
-    return { type: PREVIOUS_PAGE};
+    return { type: PREVIOUS_PAGE };
 };

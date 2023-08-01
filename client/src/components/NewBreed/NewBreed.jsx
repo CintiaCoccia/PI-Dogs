@@ -46,8 +46,8 @@ export default function NewBreed() {
     function handleTemperamentChange(newTemperaments) {
         setNewBreedData({
             ...newBreedData,
-            temperaments: newTemperaments
-        })
+            temperaments: newTemperaments,
+        });
         setErrors(
             validation({
                 ...newBreedData,
@@ -65,7 +65,7 @@ export default function NewBreed() {
             ...newBreedData,
             [name]: value,
         });
-        
+
         setErrors(
             validation({
                 ...newBreedData,
@@ -92,60 +92,91 @@ export default function NewBreed() {
     };
 
     return (
-        <div className={styles.background} style={{
-            background: `url(${backg})` , 
-          }}>
-        <div className={styles.container}>
-            <form onSubmit={handleSubmit}>
-                <h2>Create new breed</h2>
+        <div
+            className={styles.background}
+            style={{
+                background: `url(${backg})`,
+            }}>
+            <div className={styles.container}>
+                <form onSubmit={handleSubmit}>
+                    <h2>Create new breed</h2>
 
-                <label>Name: </label>
-                <br />
-                <input type="text" name="name" onChange={handleInputChange} />
-                <p className={styles.errors}>{errors.name}</p>
-                <br />
+                    <label>Name: </label>
+                    <br />
+                    <input type="text" name="name" onChange={handleInputChange} />
+                    <p className={styles.errors}>{errors.name}</p>
+                    <br />
 
-                <label>Height: </label>
-                <br />
-                <input type="text" name="height_min" placeholder="Valor mínimo en cm" onChange={handleInputChange} />
-                <input type="text" name="height_max" placeholder="Valor máximo en cm" onChange={handleInputChange} />
-                <p className={styles.errors}>{errors.height}</p>
+                    <label>Height: </label>
+                    <br />
+                    <input
+                        type="text"
+                        name="height_min"
+                        placeholder="Valor mínimo en cm"
+                        onChange={handleInputChange}
+                    />
+                    <input
+                        type="text"
+                        name="height_max"
+                        placeholder="Valor máximo en cm"
+                        onChange={handleInputChange}
+                    />
+                    <p className={styles.errors}>{errors.height}</p>
 
-                <br />
+                    <br />
 
-                <label>Weight: </label>
-                <br />
-                <input type="text" name="weight_min" placeholder="Valor mínimo en kg" onChange={handleInputChange} />
-                <input type="text" name="weight_max" placeholder="Valor máximo en kg" onChange={handleInputChange} />
-                <p className={styles.errors}>{errors.weight}</p>
+                    <label>Weight: </label>
+                    <br />
+                    <input
+                        type="text"
+                        name="weight_min"
+                        placeholder="Valor mínimo en kg"
+                        onChange={handleInputChange}
+                    />
+                    <input
+                        type="text"
+                        name="weight_max"
+                        placeholder="Valor máximo en kg"
+                        onChange={handleInputChange}
+                    />
+                    <p className={styles.errors}>{errors.weight}</p>
 
-                <br />
+                    <br />
 
-                <label>Life span: </label>
-                <br />
-                <input name="life_span_min" placeholder="Valor mínimo" onChange={handleInputChange} />
-                <input name="life_span_max" placeholder="Valor máximo" onChange={handleInputChange} />
-                <p className={styles.errors}>{errors.life_span}</p>
-                <br />
+                    <label>Life span: </label>
+                    <br />
+                    <input name="life_span_min" placeholder="Valor mínimo" onChange={handleInputChange} />
+                    <input name="life_span_max" placeholder="Valor máximo" onChange={handleInputChange} />
+                    <p className={styles.errors}>{errors.life_span}</p>
+                    <br />
 
-                <label>Temperament: </label>
-                <br />
+                    <label>Temperament: </label>
+                    <br />
 
-                <MultiSelect options={temperaments.map((item) => item.name)} onChange={handleTemperamentChange}/>
-                <p className={styles.errors}>{errors.temperaments}</p>
+                    <MultiSelect options={temperaments.map((item) => item.name)} onChange={handleTemperamentChange} />
+                    <p className={styles.errors}>{errors.temperaments}</p>
 
-                <br />
-                <label>Image: </label>
-                <br />
-                <input name="image" placeholder="insertar url" src={newBreedData.image} onChange={handleInputChange} />
-                <p className={styles.errors}>{errors.image}</p>
-                <div>
-                    <button className={styles.createButton} type="submit" disabled={buttonDisable()} onClick={handleSubmit}>
-                        Create
-                    </button>
-                </div>
-            </form>
-        </div>
+                    <br />
+                    <label>Image: </label>
+                    <br />
+                    <input
+                        name="image"
+                        placeholder="insertar url"
+                        src={newBreedData.image}
+                        onChange={handleInputChange}
+                    />
+                    <p className={styles.errors}>{errors.image}</p>
+                    <div>
+                        <button
+                            className={styles.createButton}
+                            type="submit"
+                            disabled={buttonDisable()}
+                            onClick={handleSubmit}>
+                            Create
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

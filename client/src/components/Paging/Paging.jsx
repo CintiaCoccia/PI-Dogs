@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { previousPage, nextPage } from "../../redux/action";
-import styles from "./Paging.module.css"
+import styles from "./Paging.module.css";
 
 export default function Paging() {
     const dispatch = useDispatch();
@@ -19,9 +19,19 @@ export default function Paging() {
 
     return (
         <div className={styles.paging}>
-            {page > 0 ? <button className={styles.pagingButton} onClick={previousPagePressed} disabled={disabled}>&lt;</button> : null}
-            <span>{page+1} of {totalPages}</span>
-            {moreElements ? <button className={styles.pagingButton} onClick={nextPagePressed} disabled={disabled}>&gt;</button> : null}
+            {page > 0 ? (
+                <button className={styles.pagingButton} onClick={previousPagePressed} disabled={disabled}>
+                    &lt;
+                </button>
+            ) : null}
+            <span>
+                {page + 1} of {totalPages}
+            </span>
+            {moreElements ? (
+                <button className={styles.pagingButton} onClick={nextPagePressed} disabled={disabled}>
+                    &gt;
+                </button>
+            ) : null}
         </div>
     );
 }

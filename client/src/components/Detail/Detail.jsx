@@ -17,7 +17,7 @@ export default function Detail(props) {
             const { data } = await axios("http://localhost:3001/dogs/" + id);
             setBreedById(data);
         } catch (error) {
-            setBreedById(error.response.data)
+            setBreedById(error.response.data);
         }
     }
     useEffect(() => {
@@ -25,34 +25,30 @@ export default function Detail(props) {
     }, []);
 
     function drawDetail() {
-        
-        if(breedById == null) {
-            return <Loading />
-        } else if(breedById.error) {
-            return <Errors message={breedById.error}/>
-        } else  {
+        if (breedById == null) {
+            return <Loading />;
+        } else if (breedById.error) {
+            return <Errors message={breedById.error} />;
+        } else {
             return (
-                <div className={styles.background} style={{
-                    background: `url(${backg})`, 
-                  }}>
+                <div
+                    className={styles.background}
+                    style={{
+                        background: `url(${backg})`,
+                    }}>
                     <div className={styles.container}>
-                    <img src={breedById.image} className={styles.imgContainer}/>
-                    <h1>Name: {breedById.name}</h1>
-                    <h2>Id: {breedById.id}</h2>
-                    <h2>Height: {breedById.height}</h2>
-                    <h2>Weight: {breedById.weight}</h2>
-                    <h2>Temperament: {breedById.temperament}</h2>
-                    <h2>Life span: {breedById.life_span}</h2>
-                    
+                        <img src={breedById.image} className={styles.imgContainer} />
+                        <h1>Name: {breedById.name}</h1>
+                        <h2>Id: {breedById.id}</h2>
+                        <h2>Height: {breedById.height}</h2>
+                        <h2>Weight: {breedById.weight}</h2>
+                        <h2>Temperament: {breedById.temperament}</h2>
+                        <h2>Life span: {breedById.life_span}</h2>
+                    </div>
                 </div>
-                </div>
-            )
+            );
         }
     }
 
-    return (
-        <div>
-            {drawDetail()}
-        </div>
-    );
+    return <div>{drawDetail()}</div>;
 }

@@ -12,7 +12,7 @@ export default function NavBar(props) {
 
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
-    const search= useSelector((state) => state.navBar.search);
+    const search = useSelector((state) => state.navBar.search);
 
     const [input, setInput] = useState("");
 
@@ -20,7 +20,7 @@ export default function NavBar(props) {
         setInput(event.target.value);
     }
     function handleSearch() {
-        dispatch(searchInput(input))
+        dispatch(searchInput(input));
     }
 
     function handleTemperamentChange(event) {
@@ -97,9 +97,9 @@ export default function NavBar(props) {
                         </select>
                     </li>
                     <li className={styles.searchButton}>
-                         <Link to="/dogs/new">
-                         <button className={styles.addButton}>Add new breed </button>
-                         </Link>
+                        <Link to="/dogs/new">
+                            <button className={styles.addButton}>Add new breed </button>
+                        </Link>
                     </li>
                 </ul>
             </div>

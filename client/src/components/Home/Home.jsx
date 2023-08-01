@@ -16,8 +16,8 @@ export default function Home(props) {
     const temperament = useSelector((state) => state.navBar.temperament);
     const order = useSelector((state) => state.navBar.order);
     const source = useSelector((state) => state.navBar.source);
-    const search= useSelector((state) => state.navBar.search);
-    const page=  useSelector((state) => (state.breeds.paging) ? state.breeds.paging.page : 0)
+    const search = useSelector((state) => state.navBar.search);
+    const page = useSelector((state) => (state.breeds.paging ? state.breeds.paging.page : 0));
 
     useEffect(() => {
         //ejecuta cod cuando estado de algun componente cambia
@@ -29,20 +29,19 @@ export default function Home(props) {
     }, []);
 
     function drawCardContainer() {
-    
-        if(breeds.error) {
-            return <Errors message={breeds.error} />
+        if (breeds.error) {
+            return <Errors message={breeds.error} />;
         } else if (breeds.breeds == null) {
             return <Loading />;
-        } else if(breeds.breeds.length == 0) {
-            return <Errors message={"No hay resultados para la búsqueda"}/>
+        } else if (breeds.breeds.length == 0) {
+            return <Errors message={"No hay resultados para la búsqueda"} />;
         } else {
             return (
-            <div>
-                <CardContainer breeds={breeds.breeds} />
-                <Paging />
-            </div>
-            )
+                <div>
+                    <CardContainer breeds={breeds.breeds} />
+                    <Paging />
+                </div>
+            );
         }
     }
 

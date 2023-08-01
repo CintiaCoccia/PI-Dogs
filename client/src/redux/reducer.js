@@ -1,10 +1,19 @@
-import { FILTER_TEMPERAMENTS, GET_BREEDS, GET_TEMPERAMENTS, ORDER_BREEDS, FILTER_SOURCE, GET_INPUTSEARCH, PREVIOUS_PAGE, NEXT_PAGE } from "./action";
+import {
+    FILTER_TEMPERAMENTS,
+    GET_BREEDS,
+    GET_TEMPERAMENTS,
+    ORDER_BREEDS,
+    FILTER_SOURCE,
+    GET_INPUTSEARCH,
+    PREVIOUS_PAGE,
+    NEXT_PAGE,
+} from "./action";
 
 const initialState = {
     breeds: defaultBreeds(),
     temperaments: [],
     navBar: {
-        search:"",
+        search: "",
         temperament: "todos",
         order: "asc",
         source: "todos",
@@ -59,17 +68,17 @@ const rootReducer = (state = initialState, action) => {
         }
         case PREVIOUS_PAGE: {
             const newState = {
-                ...state
-            }
-            newState.breeds.paging.disabled = true
-            newState.breeds.paging.page = Math.max(0, newState.breeds.paging.page-1) //no habrá pag -1.
+                ...state,
+            };
+            newState.breeds.paging.disabled = true;
+            newState.breeds.paging.page = Math.max(0, newState.breeds.paging.page - 1); //no habrá pag -1.
             return newState;
         }
         case NEXT_PAGE: {
             const newState = {
-                ...state
-            }
-            newState.breeds.paging.disabled = true
+                ...state,
+            };
+            newState.breeds.paging.disabled = true;
             newState.breeds.paging.page++;
             return newState;
         }
@@ -85,9 +94,9 @@ function defaultBreeds() {
             page: 0,
             moreElements: false,
             disabled: true,
-            totalPages: 0
-        }
-    }
+            totalPages: 0,
+        },
+    };
 }
 
 export default rootReducer;
