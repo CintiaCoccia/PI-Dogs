@@ -16,15 +16,15 @@ export default function NewBreed() {
     const breedCreated = useSelector((state) => state.breedCreated);
     
     const [newBreedData, setNewBreedData] = useState({
-        name: "",
+        name: null,
         height_min: "",
         height_max: "",
         weight_min: "",
         weight_max: "",
         life_span_min: "",
         life_span_max: "",
-        temperaments: [],
-        image: "",
+        temperaments: null,
+        image: null,
     });
 
     const [errors, setErrors] = useState({
