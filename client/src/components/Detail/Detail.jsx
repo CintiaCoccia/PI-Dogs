@@ -40,8 +40,8 @@ export default function Detail(props) {
                         <img src={breedById.image} className={styles.imgContainer} />
                         <h1>Name: {breedById.name}</h1>
                         <h2>Id: {breedById.id}</h2>
-                        <h2>Height: {breedById.height}</h2>
                         <h2>Weight: {breedById.weight}</h2>
+                        <h2>Height: {breedById.height}</h2>
                         <h2>Temperament: {breedById.temperament}</h2>
                         <h2>Life span: {breedById.life_span}</h2>
                     </div>

@@ -1,6 +1,6 @@
 module.exports = function parseNameQuery(req, res, next) {
     if (req.url.includes("?")) {
-        // chequeo si url tiene ? (tiene query params)
+        // chequeo si url tiene ? (tiene query params) 
         const query = req.url.split("?")[1]; //divido en 2 desde ?. izq url derecha queryP.
         const params = query.split("&"); //params [ ] es string (key:value&key:value&)
 
@@ -8,7 +8,7 @@ module.exports = function parseNameQuery(req, res, next) {
             const [key, value] = param.split("=");
 
             if (key == "") {
-                req.query.name = value;
+                req.query.name = value; //si no tiene asigno el name.
                 break;
             }
         }
@@ -17,4 +17,3 @@ module.exports = function parseNameQuery(req, res, next) {
     next();
 };
 
-// http://localhost:3001/name ? key=value & key2=value2 & key3=value3 & =value4

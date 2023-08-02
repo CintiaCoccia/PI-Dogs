@@ -34,6 +34,7 @@ function applyOrderingFilter(breeds, request) {
     const order = request.query.order;
     const temperament = request.query.temperament;
     let allDogs = breeds;
+    
     //filter por temperaments
     if (temperament)
         allDogs = allDogs.filter((dog) => {
