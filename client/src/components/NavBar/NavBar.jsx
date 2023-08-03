@@ -22,11 +22,10 @@ export default function NavBar(props) {
     function handleSearch() {
         dispatch(searchInput(input));
     }
-
     function handleTemperamentChange(event) {
         dispatch(filterTemperaments(event.target.value));
     }
-    function handleBreedsChange(event) {
+    function handleOrderChange(event) {
         dispatch(orderBreeds(event.target.value));
     }
     function handleSourceChange(event) {
@@ -47,7 +46,7 @@ export default function NavBar(props) {
                             name="search"
                             id="search"
                             defaultValue={search}
-                            placeholder="Ingresa el nombre de la raza..."
+                            placeholder="Enter breed name here..."
                             onChange={handleInputChange}
                         />
                     </li>
@@ -55,7 +54,7 @@ export default function NavBar(props) {
                         <button onClick={handleSearch}>Search</button>
                     </li>
                     <li>
-                        <label>Origen: </label>
+                        <label>Origin: </label>
                         <select
                             defaultValue={source}
                             className={styles.navbarItem}
@@ -89,11 +88,13 @@ export default function NavBar(props) {
                         <label>Order: </label>
                         <select
                             defaultValue={order}
-                            onChange={handleBreedsChange}
+                            onChange={handleOrderChange}
                             className={styles.navbarItem}
                             name="breeds">
-                            <option value="asc">Asc (A-Z)</option>
-                            <option value="desc">Desc (Z-A)</option>
+                            <option value="asc">Name asc (A-Z)</option>
+                            <option value="desc">Name desc (Z-A)</option>
+                            <option value="hweight">Higher weight</option>
+                            <option value="lweight">Lower weight</option>
                         </select>
                     </li>
                     <li className={styles.searchButton}>
